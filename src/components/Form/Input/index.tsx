@@ -1,14 +1,22 @@
-import { StyledInputContainer } from '../../../styles/form';
+import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
+import { StyledTextField } from '../../../styles/form';
 import { StyledParagraph } from '../../../styles/typography';
 
-const Input = ({ id }) => (
-  <div>
-    <StyledInputContainer>
-      <input type='text' id={id} placeholder=' ' />
-      <label htmlFor={id}>Teste</label>
-    </StyledInputContainer>
-    <StyledParagraph fontColor='red'>Erro</StyledParagraph>
-  </div>
+
+interface IInput {
+  label: string;
+  register: UseFormRegisterReturn<string>
+  error?: FieldError;
+  type: "text" | "email" | "password";
+}
+
+const Input = ({ label, register, type, error }: IInput) => (
+  <fieldset>
+    <StyledTextField label={label} type={type} {...register} />
+    {error && (
+      <StyledParagraph fontColor='red'>{error.message}</StyledParagraph>
+    )}
+  </fieldset>
 );
 
 export default Input;

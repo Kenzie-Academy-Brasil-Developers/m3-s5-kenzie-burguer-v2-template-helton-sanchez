@@ -4,7 +4,8 @@ import CartProductList from './CartProductList';
 import { StyledCartModalBox } from './style';
 import { StyledParagraph, StyledTitle } from '../../styles/typography';
 
-const CartModal = () => (
+const CartModal = () => {
+  
   <StyledCartModalBox>
     <dialog>
       <header>
@@ -33,6 +34,6 @@ const CartModal = () => (
       </div>
     </dialog>
   </StyledCartModalBox>
-);
+};
 
 export default CartModal;
