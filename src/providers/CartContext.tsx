@@ -1,17 +1,17 @@
 import { createContext, useEffect, useState} from "react";
-import { IDefaultProviderProps, IProducts, Product } from "./@types";
+import { IDefaultProviderProps, IProducts, IProductsContext} from "./@types";
 import { api } from "../services/api";
 
 
-export const UserContext = createContext({} as Product)
+export const UserContextCart = createContext({} as IProductsContext)
 
 export const UserProvider = ({ children }: IDefaultProviderProps) => {
 
-  const [products, setProducts] = useState<Product | null>(null);
+  const [product, setProducts] = useState<IProducts | null>(null);
   
   const renderProducts = async () => {
     try {
-      const response = await api.get("//products");
+      const response = await api.get("/products");
       setProducts(response.data);
       console.log(response.data);      
     } catch (error) {
@@ -24,12 +24,10 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
   },[])
 
 
- 
-
   return (
-    <UserContext.Provider value={{products, renderProducts }}>
+    <UserContextCart.Provider value={{product, renderProducts }}>
       {children}
-    </UserContext.Provider>
+    </UserContextCart.Provider>
   )
 }
 

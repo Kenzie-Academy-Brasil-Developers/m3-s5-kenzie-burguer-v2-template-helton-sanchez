@@ -38,18 +38,6 @@ export interface IUserContext {
 }
 
 export interface IProductsContext {
-  product: Product | null;
-  setProduct: React.Dispatch<React.SetStateAction<Product | null>>;
-  registerUser: (dataRegister: IRegisterFormValue) => Promise<void>;
-  userLogin: (dataLogin: ILoginFormValue) => Promise<void>;
-  userLogout: () => void;
-}
-
-
-export interface Product {
-  id: number;
-  name: string;
-  category: string;
-  price: number;
-  img: string;
+  product: IProducts | null;
+  renderProducts: () => Promise<void>;
 }
